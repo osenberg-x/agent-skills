@@ -1,0 +1,112 @@
+{
+  "_note": "机器词表。pattern 按 Python re 语法；level A=默认改，B=看上下文；fix 是还原方向而非死替换。",
+  "version": 2,
+
+  "whitelist_patterns": [
+    "(左|右|居中|两端|垂直|水平|居中对齐)对齐",
+    "(文本|控件|图标|布局)对齐",
+    "断点续传",
+    "归一化",
+    "水位线",
+    "数字孪生",
+    "垂直切片",
+    "骨架屏",
+    "锚点链接",
+    "链路层",
+    "数据链路",
+    "灰度发布",
+    "账号解冻|资金解冻|资产解冻"
+  ],
+
+  "entries": [
+    { "pattern": "门禁", "level": "A", "family": "gate", "fix": "按实际机制写：鉴权 / 准入校验 / 功能开关判定" },
+    { "pattern": "(发布|质量|准入|权限|安全|上线|合并|评审|构建|测试|归档)门(?!票|面|店|槛|户|禁|类)", "level": "A", "family": "gate", "fix": "写明检查什么：发布前跑回归 / 合并前过静态检查" },
+
+    { "pattern": "解冻", "level": "A", "family": "state", "fix": "写明从哪个状态恢复：从 suspended 恢复调度 / 解除只读" },
+
+    { "pattern": "槽位", "level": "A", "family": "spatial", "fix": "位置 / 空闲项 / 第 n 个条目" },
+    { "pattern": "(缓存|任务|连接|线程|数据|消息|事件|对象|资源|句柄|会话|队列|请求|空闲|工作)槽", "level": "A", "family": "spatial", "fix": "指明是什么容器里的第几项，或直接说数组下标 / 连接" },
+    { "pattern": "咬合", "level": "A", "family": "spatial", "fix": "对接 / 衔接，并写明两侧分别是什么" },
+    { "pattern": "孪生(?!体)", "level": "A", "family": "spatial", "fix": "副本 / 两份需保持一致的数据，写明谁是源" },
+    { "pattern": "锚点", "level": "B", "family": "spatial", "fix": "基准 / 参照点 / 固定位置" },
+    { "pattern": "骨架", "level": "B", "family": "spatial", "fix": "结构 / 框架 / 待填充的部分" },
+    { "pattern": "正交", "level": "B", "family": "spatial", "fix": "互不影响 / 可独立变更" },
+
+    { "pattern": "收口", "level": "A", "family": "flow", "fix": "结束 / 完成 / 合并到主干" },
+    { "pattern": "收窄", "level": "A", "family": "flow", "fix": "缩小到 / 仅限于" },
+    { "pattern": "收敛", "level": "B", "family": "flow", "fix": "统一为 / 归并到一处" },
+    { "pattern": "收束", "level": "A", "family": "flow", "fix": "结尾 / 汇总" },
+    { "pattern": "归一(?!化)", "level": "A", "family": "flow", "fix": "统一为同一种形式" },
+    { "pattern": "拍平", "level": "A", "family": "flow", "fix": "展平 / 去掉嵌套层级" },
+    { "pattern": "拉齐", "level": "A", "family": "flow", "fix": "统一为" },
+    { "pattern": "对齐", "level": "A", "family": "flow", "fix": "保持一致 / 同步为 / 确认一致" },
+
+    { "pattern": "落地", "level": "A", "family": "buzz", "fix": "写明完成到哪一步：已实现 / 已部署 / 已通过验证" },
+    { "pattern": "闭环", "level": "A", "family": "buzz", "fix": "写明闭环指什么：端到端能跑通 / 有回滚 / 有告警" },
+    { "pattern": "沉淀", "level": "A", "family": "buzz", "fix": "记录为 / 汇总进 / 整理成" },
+    { "pattern": "抓手", "level": "A", "family": "buzz", "fix": "具体做法 / 切入点" },
+    { "pattern": "赋能", "level": "A", "family": "buzz", "fix": "使…能够 / 提供…能力" },
+    { "pattern": "颗粒度", "level": "A", "family": "buzz", "fix": "细化程度 / 精度 / 精确到" },
+    { "pattern": "拉通", "level": "A", "family": "buzz", "fix": "在…之间统一" },
+    { "pattern": "打通", "level": "A", "family": "buzz", "fix": "接通 / 串起来，写明两端是什么" },
+    { "pattern": "卡点", "level": "A", "family": "buzz", "fix": "阻塞项" },
+    { "pattern": "堵点", "level": "A", "family": "buzz", "fix": "阻塞项" },
+    { "pattern": "断点(?!续传)", "level": "A", "family": "buzz", "fix": "中断处 / 未接上的位置" },
+    { "pattern": "体感", "level": "A", "family": "buzz", "fix": "实测 / 实际感受" },
+    { "pattern": "心智", "level": "A", "family": "buzz", "fix": "理解 / 预期 / 认知" },
+    { "pattern": "反哺", "level": "A", "family": "buzz", "fix": "反过来改进 / 回流到" },
+    { "pattern": "抽离", "level": "A", "family": "buzz", "fix": "抽出 / 单独拆出" },
+    { "pattern": "打透", "level": "A", "family": "buzz", "fix": "彻底解决" },
+    { "pattern": "盘活", "level": "A", "family": "buzz", "fix": "启用 / 重新用起来" },
+    { "pattern": "组合拳", "level": "A", "family": "buzz", "fix": "一组措施，逐条列出" },
+    { "pattern": "打法", "level": "A", "family": "buzz", "fix": "做法" },
+    { "pattern": "痒点", "level": "A", "family": "buzz", "fix": "次要需求" },
+    { "pattern": "破局", "level": "A", "family": "buzz", "fix": "突破" },
+    { "pattern": "降维", "level": "A", "family": "buzz", "fix": "化简 / 降为" },
+    { "pattern": "深水区", "level": "A", "family": "buzz", "fix": "最难的部分" },
+    { "pattern": "飞轮", "level": "B", "family": "buzz", "fix": "正向循环" },
+    { "pattern": "势能", "level": "B", "family": "buzz", "fix": "潜力 / 储备" },
+    { "pattern": "生态位", "level": "B", "family": "buzz", "fix": "定位" },
+    { "pattern": "护城河", "level": "B", "family": "buzz", "fix": "优势" },
+    { "pattern": "最后一公里", "level": "B", "family": "buzz", "fix": "收尾阶段的具体工作" },
+
+    { "pattern": "兜底", "level": "B", "family": "fallback", "fix": "写明是哪一种：默认值 / 降级返回 / 失败后回滚 / 备用数据源" },
+    { "pattern": "切片", "level": "B", "family": "slice", "fix": "分片 / 分批 / 按…拆分" },
+    { "pattern": "链路", "level": "B", "family": "chain", "fix": "调用路径 / 数据流，并写明起点终点" },
+    { "pattern": "痛点", "level": "B", "family": "buzz", "fix": "问题" },
+
+    { "pattern": "(三|四|五|六|七)道防线", "level": "A", "family": "pseudo", "fix": "逐条列出，不数个数" },
+    { "pattern": "双保险", "level": "A", "family": "pseudo", "fix": "逐条列出两条措施" },
+    { "pattern": "双链路", "level": "A", "family": "pseudo", "fix": "写明主备两条分别是什么" },
+
+    { "pattern": "\\brobust(ness)?\\b", "level": "B", "family": "en", "fix": "stable / reliable，并写明在什么条件下", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bseamless(ly)?\\b", "level": "B", "family": "en", "fix": "无需改动调用方 / 对上层透明", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bleverag(e|es|ed|ing)\\b", "level": "B", "family": "en", "fix": "use / 借助", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bdelv(e|es|ed|ing)\\b", "level": "B", "family": "en", "fix": "look at / examine / 查看", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bcomprehensive(ly)?\\b", "level": "B", "family": "en", "fix": "写明覆盖哪些项，或写 full", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bholistic\\b", "level": "B", "family": "en", "fix": "整体 / 一并", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bactionable\\b", "level": "B", "family": "en", "fix": "可直接执行 / 具体到步骤", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bparadigm\\b", "level": "B", "family": "en", "fix": "model / approach", "only_in": ["prose", "comment"] },
+    { "pattern": "\\b(crucial|pivotal)\\b", "level": "B", "family": "en", "fix": "写明为什么关键，或删掉", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bcutting[- ]edge\\b", "level": "B", "family": "en", "fix": "写明具体版本或特性", "only_in": ["prose", "comment"] },
+    { "pattern": "\\bdeep dive\\b", "level": "B", "family": "en", "fix": "详细说明 / 展开讲", "only_in": ["prose", "comment"] },
+    { "pattern": "it is worth noting|it's worth noting|in essence", "level": "B", "family": "en", "fix": "删掉，直接说", "only_in": ["prose", "comment"] }
+  ],
+
+  "identifier_patterns": [
+    { "pattern": "\\bslot(s|_count)?\\b", "level": "B", "fix": "确认是否真是领域里的 slot；否则改成 index / entry / connection / position" },
+    { "pattern": "\\bgate(s|d|_check)?\\b", "level": "B", "fix": "确认是否真是硬件或逻辑门；否则改成 auth / check / enabled" },
+    { "pattern": "\\bthaw(ed|ing)?\\b", "level": "B", "fix": "resume / unfreeze / restore" },
+    { "pattern": "\\bconverge(d|nce)?\\b", "level": "B", "fix": "settle / finalize / merge" },
+    { "pattern": "\\bwatermark\\b", "level": "B", "fix": "仅流处理里有真义；否则改成 level / used / offset" },
+    { "pattern": "\\bskeleton\\b", "level": "B", "fix": "仅 UI 骨架屏里有真义；否则改成 stub / template / outline" },
+    { "pattern": "\\bclosure\\b", "level": "B", "fix": "闭包是真术语；业务语境下的 closure 改成 end_to_end / complete" }
+  ],
+
+  "yes_terms": [
+    "幂等", "原子性", "序列化", "反序列化", "超时", "重试", "退避", "熔断", "限流",
+    "降级", "灰度", "埋点", "事务", "隔离级别", "死锁", "竞态", "内存屏障", "探针",
+    "心跳", "租约", "快照", "回滚", "背压", "水位线", "幂等键", "状态机", "原子操作",
+    "端到端", "水平扩展", "垂直扩展", "冷启动", "热路径", "脏读", "写放大", "尾延迟"
+  ]
+}
