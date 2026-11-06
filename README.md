@@ -98,14 +98,14 @@ git diff --name-only | python de-jargon/scripts/scan.py --paths-from -
 **Windows（目录联接，改动自动同步，无需管理员权限）**
 
 ```bat
-git clone https://github.com/<you>/agent-skills.git %USERPROFILE%\agent-skills
+git clone https://github.com/osenberg-x/agent-skills.git %USERPROFILE%\agent-skills
 mklink /J "%USERPROFILE%\.workbuddy\skills\de-jargon" "%USERPROFILE%\agent-skills\de-jargon"
 ```
 
 **macOS / Linux**
 
 ```bash
-git clone https://github.com/<you>/agent-skills.git ~/agent-skills
+git clone https://github.com/osenberg-x/agent-skills.git ~/agent-skills
 ln -s ~/agent-skills/de-jargon ~/.workbuddy/skills/de-jargon
 ```
 
