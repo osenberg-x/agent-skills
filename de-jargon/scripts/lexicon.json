@@ -15,12 +15,32 @@
     "链路层",
     "数据链路",
     "灰度发布",
-    "账号解冻|资金解冻|资产解冻"
+    "账号解冻|资金解冻|资产解冻",
+    "契约测试",
+    "(磁盘|资源|API|接口|租户|存储|CPU|内存)配额",
+    "性能预算",
+    "错误预算"
   ],
 
   "entries": [
     { "pattern": "门禁", "level": "A", "family": "gate", "fix": "按实际机制写：鉴权 / 准入校验 / 功能开关判定" },
     { "pattern": "(发布|质量|准入|权限|安全|上线|合并|评审|构建|测试|归档)门(?!票|面|店|槛|户|禁|类)", "level": "A", "family": "gate", "fix": "写明检查什么：发布前跑回归 / 合并前过静态检查" },
+    { "pattern": "门控", "level": "A", "family": "gate", "fix": "按实际机制写：功能开关判定 / 鉴权 / 限流 / 灰度准入" },
+    { "pattern": "闸门", "level": "A", "family": "gate", "fix": "写明在哪一步拦截、拦截后做什么" },
+    { "pattern": "卡口", "level": "A", "family": "gate", "fix": "同上，指明是哪一步的准入检查" },
+
+    { "pattern": "能力位", "level": "A", "family": "capability", "fix": "说明是哪个字段的哪一位，以及它为真时多出什么行为" },
+    { "pattern": "契约", "level": "B", "family": "contract", "fix": "接口定义 / 字段 schema / 协议约定；「契约测试」是术语，保留" },
+
+    { "pattern": "预算", "level": "B", "family": "budget", "fix": "写明是哪一种上限：超时、重试次数、内存、剩余可失败额度" },
+    { "pattern": "配额", "level": "B", "family": "budget", "fix": "资源配额是标准译名，保留；其余场景写限额 / 速率上限" },
+    { "pattern": "额度", "level": "B", "family": "budget", "fix": "同上：写明是什么的额度、用完会怎样" },
+
+    { "pattern": "落盘", "level": "B", "family": "storage", "fix": "写入磁盘 / 持久化，并说明是否 fsync、同步还是异步" },
+    { "pattern": "落库", "level": "B", "family": "storage", "fix": "写入数据库：写哪张表、失败怎么办" },
+    { "pattern": "下沉", "level": "B", "family": "storage", "fix": "移到下层 / 交给下层处理，说明移到哪一层" },
+
+    { "pattern": "缺位", "level": "A", "family": "spatial", "fix": "缺少 XX 校验 / 分支 / 字段，直接说缺什么" },
 
     { "pattern": "解冻", "level": "A", "family": "state", "fix": "写明从哪个状态恢复：从 suspended 恢复调度 / 解除只读" },
 
@@ -100,6 +120,7 @@
     { "pattern": "\\bconverge(d|nce)?\\b", "level": "B", "fix": "settle / finalize / merge" },
     { "pattern": "\\bwatermark\\b", "level": "B", "fix": "仅流处理里有真义；否则改成 level / used / offset" },
     { "pattern": "\\bskeleton\\b", "level": "B", "fix": "仅 UI 骨架屏里有真义；否则改成 stub / template / outline" },
+    { "pattern": "\\b(capability|cap)_?bit\\b", "level": "B", "fix": "位号不说明含义；改成 supports_xxx / can_xxx() / kCapXxx" },
     { "pattern": "\\bclosure\\b", "level": "B", "fix": "闭包是真术语；业务语境下的 closure 改成 end_to_end / complete" }
   ],
 

@@ -14,9 +14,10 @@ A collection of agent skills in the `SKILL.md` format. Works with Claude Code, W
 
 Chinese technical writing has a set of words that look professional and carry no information:
 
-> 门禁、解冻、收窄、切片、收口、落地、闭环、兜底、对齐、沉淀、颗粒度、打通、卡点、水位、心智、抓手、赋能、骨架、锚点、正交
+> 门禁、门控、解冻、收窄、切片、收口、落地、闭环、兜底、对齐、沉淀、颗粒度、打通、卡点、
+> 水位、心智、抓手、赋能、骨架、锚点、正交、契约、能力位、缺位、落盘、预算、配额
 
-Most of them are single-word translations of English metaphors — gate, thaw, narrow, slice, converge, land, closed-loop, fallback, align, consolidate, granularity, connect, blocker, watermark, mental model, handle, empower, skeleton, anchor, orthogonal.
+Most of them are single-word translations of English metaphors — gate, gating, thaw, narrow, slice, converge, land, closed-loop, fallback, align, consolidate, granularity, connect, blocker, watermark, mental model, handle, empower, skeleton, anchor, orthogonal, contract, capability bit, absence, persist to disk, budget, quota.
 
 What they share: each has a stronger everyday meaning in Chinese, so the reader has to work out that it doesn't mean what it appears to say, and the answer is rarely unique.
 

@@ -25,6 +25,9 @@
 | `closure` | 闭包是真术语；业务流程里的 closure 不是 | `complete`、`end_to_end` |
 | `align_*` / `sync_align` | 语义模糊 | `make_consistent_with_*`、`copy_from_*` |
 | `is_landed` / `landed` | 没有"落地"这个状态 | `is_implemented`、`is_deployed`、`is_verified` |
+| `capability_bit` / `cap_bit` | 位号本身不说明含义，读代码要回查定义 | `supports_export`、`can_export()`、`kCapExport` |
+| `contract`（作变量名） | 契约测试之外，通常只是 schema | `schema`、`field_def`、`wire_format` |
+| `budget`（非 SRE 语境） | 读者不知道是超时还是重试次数 | `timeout_ms`、`max_retries`、`memory_limit_mb` |
 
 ### 抽象通胀
 
