@@ -95,7 +95,31 @@ git diff --name-only | python de-jargon/scripts/scan.py --paths-from -
 - WorkBuddy：`~/.workbuddy/skills/`
 - Claude Code：`~/.claude/skills/`
 
-以各工具文档为准。下面的示例以 WorkBuddy 为例。
+以各工具文档为准。
+
+### 一次装到本机所有 agent
+
+同时用多个 agent 的话，让脚本自己去找各家的 skills 目录：
+
+```powershell
+.\scripts\install-all.ps1 -DryRun      # 先看会改什么
+.\scripts\install-all.ps1              # 建立联接
+.\scripts\install-all.ps1 -Uninstall   # 全部撤掉
+```
+
+```bash
+./scripts/install-all.sh --dry-run
+./scripts/install-all.sh
+./scripts/install-all.sh --uninstall
+```
+
+扫描 `<home>/<agent>/skills` 与 `<home>/<agent>/<子目录>/skills`，跳过插件缓存
+（`connectors`、`marketplace`）和嵌套的 `skills/skills`，执行完报告改了什么。
+可以重复跑，第二次什么都不会做。
+
+### 只装一个，手动来
+
+下面的示例以 WorkBuddy 为例。
 
 **Windows（目录联接，改动自动同步，无需管理员权限）**
 

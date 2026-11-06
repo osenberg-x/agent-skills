@@ -97,7 +97,31 @@ Clone anywhere, then link or copy the skills you want into your tool's skills di
 - WorkBuddy: `~/.workbuddy/skills/`
 - Claude Code: `~/.claude/skills/`
 
-Check your tool's docs for the exact path. The examples below use WorkBuddy.
+Check your tool's docs for the exact path.
+
+### Link into every agent on this machine
+
+If you run several agents side by side, let the script find their skills directories for you:
+
+```powershell
+.\scripts\install-all.ps1 -DryRun      # preview
+.\scripts\install-all.ps1              # create the junctions
+.\scripts\install-all.ps1 -Uninstall   # remove them
+```
+
+```bash
+./scripts/install-all.sh --dry-run
+./scripts/install-all.sh
+./scripts/install-all.sh --uninstall
+```
+
+It scans `<home>/<agent>/skills` and `<home>/<agent>/<sub>/skills`, skips plugin caches
+(`connectors`, `marketplace`) and nested `skills/skills`, and reports what it changed.
+Idempotent — running it twice does nothing the second time.
+
+### Link one skill manually
+
+The examples below use WorkBuddy.
 
 **Windows — directory junction, edits sync automatically, no admin rights needed**
 
