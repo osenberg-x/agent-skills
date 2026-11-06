@@ -1,3 +1,5 @@
+**中文** | [English](README.en.md)
+
 # agent-skills
 
 通用的 agent skills 合集，遵循 `SKILL.md` 规范 —— Claude Code、WorkBuddy，以及任何支持 Agent Skills 的工具都能直接加载。每个目录是一个独立 skill，复制或链接到对应工具的 skills 目录即可。

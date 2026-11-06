@@ -144,6 +144,7 @@ def in_span(pos, spans):
 
 def scan_text(path, entries, idents, wl, ext):
     hits = []
+    list_lines = 0
     is_prose = ext in PROSE_EXT
     style = EXT_STYLE.get(ext, "clike")
     in_block = False
@@ -152,7 +153,7 @@ def scan_text(path, entries, idents, wl, ext):
         with open(path, "r", encoding="utf-8", errors="replace") as f:
             lines = f.read().splitlines()
     except (OSError, UnicodeError):
-        return hits
+        return hits, 0
 
     for lineno, raw in enumerate(lines, 1):
         if not raw.strip():
@@ -222,9 +223,17 @@ def scan_text(path, entries, idents, wl, ext):
                 continue
             kept.append(h)
         kept.sort(key=lambda h: h["col"])
+
+        # 词表行：一行里 4 个以上不同命中词且覆盖过半行，是在列举而非使用，跳过
+        if len(kept) >= 4 and len({h["word"] for h in kept}) >= 4:
+            covered = sum(h["end"] - h["col"] + 1 for h in kept)
+            if covered / max(1, len(line.strip())) > 0.5:
+                list_lines += 1
+                continue
+
         hits.extend(kept)
 
-    return hits
+    return hits, list_lines
 
 
 def iter_files(targets, exclude_globs):
@@ -285,6 +294,7 @@ def main():
 
     all_hits = []
     nfiles = 0
+    skipped_lists = 0
     for p in iter_files(targets, args.exclude):
         ext = os.path.splitext(p)[1].lower()
         try:
@@ -296,7 +306,9 @@ def main():
         except OSError:
             continue
         nfiles += 1
-        for h in scan_text(p, entries, idents, wl, ext):
+        file_hits, n_lists = scan_text(p, entries, idents, wl, ext)
+        skipped_lists += n_lists
+        for h in file_hits:
             if h["level"] not in levels:
                 continue
             if fams and h["family"] not in fams:
@@ -308,6 +320,7 @@ def main():
         out["files_scanned"] = nfiles
         out["total"] = len(all_hits)
         out["by_level"] = dict(Counter(h["level"] for h in all_hits))
+        out["skipped_list_lines"] = skipped_lists
         out["hits"] = all_hits
         print(json.dumps(out, ensure_ascii=False, indent=2))
         return 0 if args.no_fail else (1 if any(h["level"] == "A" for h in all_hits) else 0)
@@ -324,6 +337,8 @@ def main():
     print("")
     print("扫描 %d 个文件 · 命中 %d 处   [A 级 %d · B 级 %d]"
           % (nfiles, len(all_hits), lv.get("A", 0), lv.get("B", 0)))
+    if skipped_lists:
+        print("（跳过 %d 行词表/列举 —— 一行里 4 个以上不同命中词，按引用处理）" % skipped_lists)
     print("")
 
     if not all_hits:
