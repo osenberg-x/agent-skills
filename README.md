@@ -1,6 +1,6 @@
-# workbuddy-skills
+# agent-skills
 
-自建的 [WorkBuddy](https://www.workbuddy.cn) skills 合集。每个目录是一个独立 skill，可直接复制到 `~/.workbuddy/skills/` 使用。
+通用的 agent skills 合集，遵循 `SKILL.md` 规范 —— Claude Code、WorkBuddy，以及任何支持 Agent Skills 的工具都能直接加载。每个目录是一个独立 skill，复制或链接到对应工具的 skills 目录即可。
 
 | Skill | 作用 |
 |---|---|
@@ -88,26 +88,31 @@ git diff --name-only | python de-jargon/scripts/scan.py --paths-from -
 
 ## 安装
 
-克隆到任意位置，再把需要的 skill 链接或复制进 `~/.workbuddy/skills/`。
+克隆到任意位置，再把需要的 skill 链接或复制进你所使用工具的 skills 目录。常见位置：
+
+- WorkBuddy：`~/.workbuddy/skills/`
+- Claude Code：`~/.claude/skills/`
+
+以各工具文档为准。下面的示例以 WorkBuddy 为例。
 
 **Windows（目录联接，改动自动同步，无需管理员权限）**
 
 ```bat
-git clone https://github.com/<you>/workbuddy-skills.git %USERPROFILE%\workbuddy-skills
-mklink /J "%USERPROFILE%\.workbuddy\skills\de-jargon" "%USERPROFILE%\workbuddy-skills\de-jargon"
+git clone https://github.com/<you>/agent-skills.git %USERPROFILE%\agent-skills
+mklink /J "%USERPROFILE%\.workbuddy\skills\de-jargon" "%USERPROFILE%\agent-skills\de-jargon"
 ```
 
 **macOS / Linux**
 
 ```bash
-git clone https://github.com/<you>/workbuddy-skills.git ~/workbuddy-skills
-ln -s ~/workbuddy-skills/de-jargon ~/.workbuddy/skills/de-jargon
+git clone https://github.com/<you>/agent-skills.git ~/agent-skills
+ln -s ~/agent-skills/de-jargon ~/.workbuddy/skills/de-jargon
 ```
 
 **只想要副本（不跟踪更新）**
 
 ```bash
-cp -r workbuddy-skills/de-jargon ~/.workbuddy/skills/
+cp -r agent-skills/de-jargon ~/.workbuddy/skills/
 ```
 
 装好后需要**重新打开会话**，skill 才会出现在列表里。
